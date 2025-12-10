@@ -1,0 +1,15 @@
+1,Cien anos de soledad,true,Book,1967,12,Gabriel Garcia Marquez
+2,Don Quijote de la Mancha,true,Book,1605,9,Miguel de Cervantes
+3,La sombra del viento,true,Book,2001,7,Carlos Ruiz Zafon
+4,El nombre de la rosa,true,Book,1980,5,Umberto Eco
+5,1984,true,Book,1949,11,George Orwell
+6,Orgullo y prejuicio,true,Book,1813,6,Jane Austen
+7,Cronica de una muerte anunciada,true,Book,1981,4,Gabriel Garcia Marquez
+
+8,Revista de Historia Contemporanea,true,Journal,2018,3,Editorial Historia
+9,Revista de Ciencia y Tecnologia,true,Journal,2020,2,Editorial Ciencia
+14,Revista de Literatura Comparada,true,Journal,2019,1,Editorial Letras
+
+10,Introduccion a la Psicologia,true,EBook,2015,8,John Smith,PDF
+11,Atlas del Mundo,true,EBook,2017,5,GeoMaps Co.,EPUB
+15,Ensayos de Filosofia Moderna,true,EBook,2016,4,Peter Brown,MOBI
