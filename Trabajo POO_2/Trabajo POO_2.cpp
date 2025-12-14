@@ -6,12 +6,12 @@
 
 int main() {
     
-    // Activa la configuración regional del sistema (incluye idioma).
+    // Activa la configuración regional del sistema (permite carácteres especiales).
     setlocale(LC_ALL, "");
-
+    //Declaración de un objeto de la clase.
     Library lib;
 
-    // Carga inicial del catálogo desde CSV (bloque D1). [file:1]
+    // Carga inicial del catálogo desde CSV.
     lib.getCatalog().loadFromCSV("items.csv");
     
 	// Mensaje de bienvenida y ejecución del menú.
@@ -32,3 +32,4 @@ int main() {
 //   4. Use la ventana Lista de errores para ver los errores
 //   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
 //   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
+
