@@ -6,15 +6,16 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
-
+//Destructor de Catalog.
 Catalog::~Catalog() {
     for (Item* item : items) {
         delete item;
     }
 }
-
+//Función de lectura de .csv
 void Catalog::loadFromCSV(const std::string& filename) {
     std::ifstream file(filename);
+    //Funcion de error de lectura del csv
     if (!file.is_open()) {
         std::cerr << "Error: no se pudo abrir el fichero " << filename << std::endl;
         return;
@@ -29,7 +30,7 @@ void Catalog::loadFromCSV(const std::string& filename) {
         std::stringstream ss(line);
         std::string s_id, title, s_isAvailable, category, s_year, s_prestamos;
 
-        // --------- CAMPOS B�SICOS ---------
+        //Lo que está leyendo,separandolos por comas
         if (!std::getline(ss, s_id, delim) ||
             !std::getline(ss, title, delim) ||
             !std::getline(ss, s_isAvailable, delim) ||
@@ -37,7 +38,8 @@ void Catalog::loadFromCSV(const std::string& filename) {
             !std::getline(ss, s_year, delim) ||
             !std::getline(ss, s_prestamos, delim))
         {
-            std::cerr << "L�nea CSV mal formada: " << line << std::endl;
+            //Funcion de error, en caso de que la estructura del csv esté mal.
+            std::cerr << "Línea CSV mal formada: " << line << std::endl;
             continue;
         }
 
@@ -50,12 +52,13 @@ void Catalog::loadFromCSV(const std::string& filename) {
             year = std::stoi(s_year);
             nPrestamos = std::stoi(s_prestamos);
         }
+            //Nos avisa de que hay un error al convertir numeros en lineas pero no para el sistema.
         catch (const std::exception&) {
-            std::cerr << "Error convirtiendo n�meros en l�nea: " << line << std::endl;
+            std::cerr << "Error convirtiendo números en línea: " << line << std::endl;
             continue;
         }
 
-        // --------- CAMPOS EXTRA SEG�N TIPO ---------
+        //Campos específicos de cada uno
         std::string author, editor, format;
 
         if (category == "Book") {
@@ -74,11 +77,11 @@ void Catalog::loadFromCSV(const std::string& filename) {
             if (format.empty()) format = "PDF";
         }
         else {
-            std::cerr << "Categor�a desconocida en CSV: " << category << std::endl;
+            std::cerr << "Categoría desconocida en CSV: " << category << std::endl;
             continue;
         }
 
-        // --------- CONSTRUCCI�N DEL OBJETO ---------
+        //Añadir ítems
         Item* item = nullptr;
 
         if (category == "Book") {
@@ -94,18 +97,19 @@ void Catalog::loadFromCSV(const std::string& filename) {
 
         items.push_back(item);
     }
-
+    //Función de error qur nos avisa de que hay error en la lectura del fichero con dicho nombre.
     if (file.bad()) {
         std::cerr << "Error de lectura en el fichero " << filename << std::endl;
     }
-
+   
     file.close();
 }
 
+//Funcion añadir ítem.
 void Catalog::addItem(Item* item) {
     if (item) items.push_back(item);
 }
-
+//Búsqueda de objeto por año de publicacion y numero de prestamos
 std::vector<Item*> Catalog::filterAndSortByYearAndLoans(int year) const {
     std::vector<Item*> filtered;
 
@@ -128,3 +132,4 @@ void Catalog::displayAll() const {
         if (item) item->imprimirDetalles();
     }
 }
+
