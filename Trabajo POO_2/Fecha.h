@@ -2,7 +2,7 @@
 #include <iostream>
 
 /*
- * Clase simple de fecha (día/mes/año) para préstamos y licencias. [file:1]
+ * Clase simple de fecha (dÃ­a/mes/aÃ±o) para prÃ©stamos y licencias.
  */
 class Fecha {
 private:
@@ -27,7 +27,7 @@ public:
         return day > other.day;
     }
 
-    // Diferencia aproximada en días (this - other).
+    // Diferencia aproximada en dÃ­as (this - other).
     int diasDiferencia(const Fecha& other) const {
         return (year - other.year) * 365 +
             (month - other.month) * 30 +
@@ -38,3 +38,4 @@ public:
         std::cout << day << "/" << month << "/" << year;
     }
 };
+
