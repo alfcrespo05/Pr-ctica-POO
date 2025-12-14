@@ -51,36 +51,36 @@ void Library::crearPrestamo() {
     int userID, itemID;
     std::cout << "ID de usuario: ";
     std::cin >> userID;
-    std::cout << "ID de ítem: ";
+    std::cout << "ID de Ã­tem: ";
     std::cin >> itemID;
 
     User* u = findUserByID(userID);
     Item* it = findItemByID(itemID);
 
     if (!u || !it) {
-        std::cout << "Usuario o ítem no encontrado.\n";
+        std::cout << "Usuario o Ã­tem no encontrado.\n";
         return;
     }
 
     if (u->isBlocked()) {
-        std::cout << "Usuario bloqueado por sanción. No se puede crear préstamo.\n";
+        std::cout << "Usuario bloqueado por sanciÃ³n. No se puede crear prÃ©stamo.\n";
         return;
     }
 
     int maxPrestamos = maxPrestamosParaRol(u->getRol());
     if (u->getPrestamosActivos() >= maxPrestamos) {
-        std::cout << "Límite de préstamos activos alcanzado para este usuario.\n";
+        std::cout << "LÃ­mite de prÃ©stamos activos alcanzado para este usuario.\n";
         return;
     }
 
     if (!it->getIsAvailable()) {
-        std::cout << "Ítem no disponible (ya prestado).\n";
+        std::cout << "Ãtem no disponible (ya prestado).\n";
         return;
     }
 
-    // Check licencia EBook (opcional, aquí asumimos no expirada por defecto).
+    // Check licencia EBook (opcional, aquÃ­ asumimos no expirada por defecto).
     if (EBook* ebook = dynamic_cast<EBook*>(it)) {
-        // Podrías comparar expiryDate con una fecha "hoy".
+        // PodrÃ­as comparar expiryDate con una fecha "hoy".
         (void)ebook; // Para evitar warning si no se usa.
     }
 
@@ -89,7 +89,7 @@ void Library::crearPrestamo() {
     std::cin >> d >> m >> a;
     Fecha inicio(d, m, a);
 
-    std::cout << "Fecha límite (d m a): ";
+    std::cout << "Fecha lÃ­mite (d m a): ";
     std::cin >> d >> m >> a;
     Fecha limite(d, m, a);
 
@@ -100,12 +100,12 @@ void Library::crearPrestamo() {
     u->incrementarPrestamosActivos();
     it->incrementarPrestamos();
 
-    std::cout << "Préstamo registrado correctamente.\n";
+    std::cout << "PrÃ©stamo registrado correctamente.\n";
 }
 
 void Library::devolverPrestamo() {
     int itemID;
-    std::cout << "ID de ítem a devolver: ";
+    std::cout << "ID de Ã­tem a devolver: ";
     std::cin >> itemID;
 
     for (Loan* l : loans) {
@@ -113,27 +113,27 @@ void Library::devolverPrestamo() {
             l->getItem()->getItemID() == itemID) {
 
             int d, m, a;
-            std::cout << "Fecha de devolución (d m a): ";
+            std::cout << "Fecha de devoluciÃ³n (d m a): ";
             std::cin >> d >> m >> a;
             Fecha devolucion(d, m, a);
 
             l->devolver(devolucion);
-            std::cout << "Devolución registrada.\n";
+            std::cout << "DevoluciÃ³n registrada.\n";
             return;
         }
     }
 
-    std::cout << "No se encontró un préstamo activo para ese ítem.\n";
+    std::cout << "No se encontrÃ³ un prÃ©stamo activo para ese Ã­tem.\n";
 }
 
 void Library::buscarYOrdenarPorAnioYPrestamos() {
     int year;
-    std::cout << "Filtrar ítems publicados después del año: ";
+    std::cout << "Filtrar Ã­tems publicados despuÃ©s del aÃ±o: ";
     std::cin >> year;
 
     auto filtrados = catalog.filterAndSortByYearAndLoans(year);
 
-    std::cout << "Ítems filtrados y ordenados:\n";
+    std::cout << "Ãtems filtrados y ordenados:\n";
     for (Item* it : filtrados) {
         if (it) it->imprimirDetalles();
     }
@@ -156,21 +156,21 @@ void Library::reportePorRol() const {
         int prestamos = par.second;
         double sancionTotal = sancionesPorRol.at(rol);
         std::cout << "Rol: " << rol
-            << " | Préstamos activos: " << prestamos
-            << " | Sanción total: " << sancionTotal << " €\n";
+            << " | PrÃ©stamos activos: " << prestamos
+            << " | SanciÃ³n total: " << sancionTotal << " â‚¬\n";
     }
 }
 
 void Library::mostrarMenu() {
-    std::cout << "\n=== Menú Biblioteca ===\n";
-    std::cout << "1) Listar ítems\n";
-    std::cout << "2) Añadir usuario\n";
-    std::cout << "3) Crear préstamo\n";
-    std::cout << "4) Devolver préstamo\n";
-    std::cout << "5) Buscar/ordenar por año y nº préstamos (E2)\n";
-    std::cout << "6) Reporte por rol (F2)\n";
+    std::cout << "\n=== MenÃº Biblioteca ===\n";
+    std::cout << "1) Listar Ã­tems\n";
+    std::cout << "2) AÃ±adir usuario\n";
+    std::cout << "3) Crear prÃ©stamo\n";
+    std::cout << "4) Devolver prÃ©stamo\n";
+    std::cout << "5) Buscar/ordenar por aÃ±o y nÂº prÃ©stamos (E2)\n";
+    std::cout << "6) Ver usuarios(y roles)\n";
     std::cout << "0) Salir\n";
-    std::cout << "Opción: ";
+    std::cout << "OpciÃ³n: ";
 }
 
 void Library::ejecutar() {
@@ -202,7 +202,8 @@ void Library::ejecutar() {
             std::cout << "Saliendo...\n";
             break;
         default:
-            std::cout << "Opción inválida.\n";
+            std::cout << "OpciÃ³n invÃ¡lida.\n";
         }
     } while (opcion != 0);
 }
+
