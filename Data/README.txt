@@ -1,0 +1,1 @@
+En los ejemplos el setlocale no funcionaba por lo que los caracteres especiales no funcionaban pero porque mi sistema no lo permitia
