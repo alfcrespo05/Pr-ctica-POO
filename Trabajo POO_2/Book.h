@@ -2,7 +2,7 @@
 #include "Item.h"
 
 /*
- * Clase concreta Book que representa un libro físico. [file:1]
+ * Clase concreta Book que representa un libro fÃ­sico. 
  */
 class Book : public Item {
 private:
@@ -20,3 +20,4 @@ public:
 
     const std::string& getAuthor() const { return author; }
 };
+
