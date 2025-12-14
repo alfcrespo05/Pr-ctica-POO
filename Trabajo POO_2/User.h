@@ -3,15 +3,15 @@
 
 /*
  * Clase User que representa a un usuario de la biblioteca.
- * Rol: Estudiante, PDI, PAS; sanción acumulada en euros. [file:1]
+ * Rol: Estudiante, PDI, PAS(cada uno de ellos tiene distinto lÃ­mite de prÃ©stamos); sanciÃ³n acumulada en euros.
  */
 class User {
 private:
-    int userID{};            // Identificador único.
+    int userID{};            // Identificador Ãºnico.ID ordenado por orden de creaciÃ³n
     std::string name;        // Nombre.
     std::string rol;         // Rol (Estudiante, PDI, PAS).
-    double sancion{ 0.0 };     // Importe acumulado de sanción (A1). [file:1]
-    int prestamosActivos{ 0 }; // Número de préstamos activos (C1). [file:1]
+    double sancion{ 0.0 };     // Importe acumulado de sanciÃ³n (A1).Double para que pueda tener los cÃ©ntimos.
+    int prestamosActivos{ 0 }; // NÃºmero de prÃ©stamos activos.
 
 public:
     User(int userID, const std::string& name, const std::string& rol);
@@ -26,9 +26,10 @@ public:
     void incrementarPrestamosActivos();
     void decrementarPrestamosActivos();
 
-    // Añade importe a la sanción, con tope máximo de 15 €. [file:1]
+    // AÃ±ade importe a la sanciÃ³n, con tope mÃ¡ximo de 15 â‚¬.
     void anadirSancion(double importe);
 
-    // Usuario bloqueado si sanción > 10 €. [file:1]
+    // Usuario bloqueado si sanciÃ³n > 10 â‚¬.
     bool isBlocked() const;
 };
+
