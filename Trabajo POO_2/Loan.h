@@ -4,19 +4,20 @@
 #include "Fecha.h"
 
 /*
- * Loan vincula un User* y un Item* con fechas de inicio, l韒ite y devoluci髇.
- * Los punteros no son propietarios, solo referencian objetos existentes. [file:1]
+ * Loan vincula un User* y un Item* con fechas de inicio, l铆mite y devoluci贸n.
+ * Los punteros no son propietarios, solo referencian objetos existentes.
  */
 class Loan {
 private:
-    User* user;       // Usuario que realiza el pr閟tamo.
-    Item* item;       // 蛅em prestado.
+    User* user;       // Usuario que realiza el pr茅stamo.
+    Item* item;       // 脥tem prestado.
     Fecha inicio;     // Fecha de inicio.
-    Fecha limite;     // Fecha l韒ite.
-    Fecha devolucion; // Fecha de devoluci髇.
+    Fecha limite;     // Fecha l铆mite.
+    Fecha devolucion; // Fecha de devoluci贸n.
     bool devuelto{ false };
 
 public:
+//Constructor de Loan
     Loan(User* user,
         Item* item,
         const Fecha& inicio,
@@ -26,6 +27,7 @@ public:
     Item* getItem() const { return item; }
     bool estaDevuelto() const { return devuelto; }
 
-    // Registra la devoluci髇, calcula retraso y a馻de sanci髇 (A1). [file:1]
+    // Registra la devoluci贸n, calcula retraso y a帽ade sanci贸n. 
     void devolver(const Fecha& fechaDevolucion);
 };
+
