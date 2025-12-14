@@ -6,8 +6,8 @@
 #include <map>
 
 /*
- * Library orquesta catálogo, usuarios y préstamos y expone operaciones
- * tipo CLI (menú). [file:1]
+ * Library orquesta catÃ¡logo, usuarios y prÃ©stamos y expone operaciones
+ * tipo CLI (menÃº). [file:1]
  */
 class Library {
 private:
@@ -21,28 +21,29 @@ public:
 
     Catalog& getCatalog() { return catalog; }
 
-    // Gestión de usuarios.
+    // GestiÃ³n de usuarios.
     void addUserFromConsole();
     User* findUserByID(int id) const;
 
-    // Gestión de ítems.
+    // GestiÃ³n de Ã­tems.
     Item* findItemByID(int id) const;
 
-    // Lógica de préstamos.
+    // LÃ³gica de prÃ©stamos.
     int maxPrestamosParaRol(const std::string& rol) const;
     void crearPrestamo();
     void devolverPrestamo();
 
-    // Búsqueda/ordenación (E2).
+    // BÃºsqueda/ordenaciÃ³n.
     void buscarYOrdenarPorAnioYPrestamos();
 
-    // Reporte por rol (F2).
+    // Reporte por rol.
     void reportePorRol() const;
 
-    // Mostrar todos los ítems.
+    // Mostrar todos los Ã­tems.
     void mostrarCatalogo() const { catalog.displayAll(); }
 
-    // Menú principal de consola.
+    // MenÃº principal de consola.
     void mostrarMenu();
     void ejecutar();
 };
+
