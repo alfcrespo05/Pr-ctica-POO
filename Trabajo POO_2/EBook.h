@@ -3,13 +3,13 @@
 #include "Fecha.h"
 
 /*
- * Variante B1: EBook con licencia y fecha de expiración. [file:1]
+ * Variante B1: EBook con licencia y fecha de expiraciÃ³n.
  */
 class EBook : public Item {
 private:
     std::string author;   // Autor del eBook.
     std::string license;  // Texto de licencia (ej. "Campus").
-    Fecha expiryDate;     // Fecha de expiración de la licencia.
+    Fecha expiryDate;     // Fecha de expiraciÃ³n de la licencia.
 
 public:
     EBook(int itemID,
@@ -26,3 +26,4 @@ public:
     const Fecha& getExpiryDate() const { return expiryDate; }
     const std::string& getAuthor() const { return author; }
 };
+
