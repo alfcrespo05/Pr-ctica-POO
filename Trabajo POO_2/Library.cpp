@@ -39,11 +39,11 @@ Item* Library::findItemByID(int id) const {
     }
     return nullptr;
 }
-
+//Esto es sólo para que el sistema no preste libros a gente con otros roles.
 int Library::maxPrestamosParaRol(const std::string& rol) const {
     if (rol == "Estudiante") return 3;
-    if (rol == "PDI") return 6;
-    if (rol == "PAS") return 5;
+    if (rol == "PDI") return 3;
+    if (rol == "PAS") return 3;
     return 0; // Rol desconocido.
 }
 
@@ -56,12 +56,12 @@ void Library::crearPrestamo() {
 
     User* u = findUserByID(userID);
     Item* it = findItemByID(itemID);
-
+    //Si no existe ese usuario o item se indicará que no se ha encontrado.
     if (!u || !it) {
         std::cout << "Usuario o ítem no encontrado.\n";
         return;
     }
-
+    //Si el usuario esta bloqueado no se realiza el préstamo.
     if (u->isBlocked()) {
         std::cout << "Usuario bloqueado por sanción. No se puede crear préstamo.\n";
         return;
@@ -83,7 +83,7 @@ void Library::crearPrestamo() {
         // Podrías comparar expiryDate con una fecha "hoy".
         (void)ebook; // Para evitar warning si no se usa.
     }
-
+    //Introducir a mano la fecha en la que se ha realizado el préstamo y cuando será el límite de devolución.
     int d, m, a;
     std::cout << "Fecha de inicio (d m a): ";
     std::cin >> d >> m >> a;
@@ -92,37 +92,38 @@ void Library::crearPrestamo() {
     std::cout << "Fecha límite (d m a): ";
     std::cin >> d >> m >> a;
     Fecha limite(d, m, a);
-
+    //Después de todo lo anterior se creará un préstamo
     Loan* loan = new Loan(u, it, inicio, limite);
     loans.push_back(loan);
-
+    //Cambia los valores,ahora el objeto aparecerá que no está disponible, el usuario tendrá un préstamo más y el objeto también.
     it->setAvailable(false);
     u->incrementarPrestamosActivos();
     it->incrementarPrestamos();
-
+    //Mensaje para avisarnos de que se ha realizado el préstamo correctamente 
     std::cout << "Préstamo registrado correctamente.\n";
 }
-
+//Función de devolución
 void Library::devolverPrestamo() {
     int itemID;
     std::cout << "ID de ítem a devolver: ";
     std::cin >> itemID;
 
     for (Loan* l : loans) {
+        //En caso de que l exista y no esté devuelto entonces el ID del objeto será itemID
         if (l && !l->estaDevuelto() && l->getItem() &&
             l->getItem()->getItemID() == itemID) {
-
+            //Pide la fecha de devolucion
             int d, m, a;
             std::cout << "Fecha de devolución (d m a): ";
             std::cin >> d >> m >> a;
             Fecha devolucion(d, m, a);
-
+            //El item está devuelto
             l->devolver(devolucion);
             std::cout << "Devolución registrada.\n";
             return;
         }
     }
-
+    //Si el ID es incorrecto indicará que no se ha encontrado el préstamo de dicho ítem.
     std::cout << "No se encontró un préstamo activo para ese ítem.\n";
 }
 
@@ -168,7 +169,7 @@ void Library::mostrarMenu() {
     std::cout << "3) Crear préstamo\n";
     std::cout << "4) Devolver préstamo\n";
     std::cout << "5) Buscar/ordenar por año y nº préstamos (E2)\n";
-    std::cout << "6) Ver usuarios(y roles)\n";
+    std::cout << "6) Reporte por rol\n";
     std::cout << "0) Salir\n";
     std::cout << "Opción: ";
 }
@@ -206,4 +207,5 @@ void Library::ejecutar() {
         }
     } while (opcion != 0);
 }
+
 
