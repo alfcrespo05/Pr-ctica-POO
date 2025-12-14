@@ -2,7 +2,7 @@
 #include "Item.h"
 
 /*
- * Clase concreta Journal que representa una revista científica. [file:1]
+ * Clase concreta Journal que representa una revista cientÃ­fica.
  */
 class Journal : public Item {
 private:
@@ -20,3 +20,4 @@ public:
 
     const std::string& getEditor() const { return editor; }
 };
+
